@@ -1,12 +1,11 @@
 
+
 import { GoogleGenAI } from "@google/genai";
 import { SYSTEM_PROMPT, RESPONSE_SCHEMA } from '../constants';
 import type { UserInput, RoadmapResponse } from '../types';
 
-if (!process.env.API_KEY) {
-  throw new Error("API_KEY environment variable is not set.");
-}
-
+// The API key is injected by the Vite build process from Vercel's environment variables.
+// No need to check for its existence here, as the build would fail if it's missing.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export async function generateRoadmap(userInput: UserInput): Promise<RoadmapResponse> {
